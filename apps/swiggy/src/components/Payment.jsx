@@ -3,7 +3,7 @@ const Payment = () => {
     <nav className="navbar">
       <div className="navbar-container">
         <div className="navbar-logo">
-          <a href="/">Logo</a>
+          <a href="/">logogo</a>
         </div>
         <ul className="navbar-menu">
           <li className="navbar-item">
