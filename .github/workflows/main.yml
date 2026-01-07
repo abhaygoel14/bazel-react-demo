@@ -13,7 +13,6 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
 
-      # Restore Bazel cache
       - name: Restore Bazel cache
         uses: actions/cache@v4
         with:
@@ -24,18 +23,35 @@ jobs:
           restore-keys: |
             bazel-${{ runner.os }}-
 
-      # Install Node (Bazel will still manage toolchain internally)
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: 18
 
-      # Build Zomato app
-      - name: Build Zomato
+      # =========================
+      # ZOMATO BUILD (with cache logs)
+      # =========================
+      - name: Build Zomato (cache debug)
         run: |
-          bazel build //apps/zomato:zomato
+          echo "🔵 Building Zomato"
+          bazel build //apps/zomato:zomato \
+            --explain=zomato_explain.log \
+            --verbose_explanations \
+            --execution_log_json_file=zomato_exec.json
 
-      # Build Swiggy app
-      - name: Build Swiggy
+          echo "📄 Zomato explain log (cache info):"
+          grep -E "cached|reused|Executing" zomato_explain.log || true
+
+      # =========================
+      # SWIGGY BUILD (with cache logs)
+      # =========================
+      - name: Build Swiggy (cache debug)
         run: |
-          bazel build //apps/swiggy:swiggy
+          echo "🟢 Building Swiggy"
+          bazel build //apps/swiggy:swiggy \
+            --explain=swiggy_explain.log \
+            --verbose_explanations \
+            --execution_log_json_file=swiggy_exec.json
+
+          echo "📄 Swiggy explain log (cache info):"
+          grep -E "cached|reused|Executing" swiggy_explain.log || true
