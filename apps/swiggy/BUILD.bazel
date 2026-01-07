@@ -6,4 +6,6 @@ js_binary(
     data = glob([
        "**/*.jsx"
     ]),
+    args = ["node_modules/vite/bin/vite.js", "build"],
+    chdir = package_name()
 )
