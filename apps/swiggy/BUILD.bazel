@@ -4,8 +4,6 @@ js_binary(
     name = "swiggy",
     entry_point = "src/main.jsx",
     data = glob([
-        "src/**/*",
-        "index.html",
-        "package.json",
+       "**/*.jsx"
     ]),
 )
