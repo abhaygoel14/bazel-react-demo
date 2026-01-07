@@ -1,0 +1,11 @@
+load("@aspect_rules_js//js:defs.bzl", "js_binary")
+
+js_binary(
+    name = "zomato",
+    entry_point = "src/main.jsx",
+    data = glob([
+        "src/**/*",
+        "index.html",
+        "package.json",
+    ]),
+)

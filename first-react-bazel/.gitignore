@@ -1,0 +1,18 @@
+# Bazel output directories
+bazel-*
+.bazelrc.user
+
+# Local Bazel caches (never commit)
+.bazel-cache/
+.bazel-repo-cache/
+
+# Node
+node_modules/
+
+# Logs
+log.txt
+
+# OS / Editor
+.DS_Store
+.vscode/
+.idea/

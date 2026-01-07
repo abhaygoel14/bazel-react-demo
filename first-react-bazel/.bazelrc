@@ -1,0 +1,4 @@
+build --disk_cache=.bazel-cache
+build --repository_cache=.bazel-repo-cache
+build --experimental_action_cache_store_output_metadata
+build --nostamp
